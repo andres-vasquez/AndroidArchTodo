@@ -1,0 +1,15 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="check_padding">16dp</dimen>
+
+    <!-- Global dimens -->
+    <dimen name="space_xxs">4dp</dimen>
+    <dimen name="space_xs">8dp</dimen>
+    <dimen name="space_sm">12dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">20dp</dimen>
+    <dimen name="space_xl">24dp</dimen>
+    <dimen name="space_xxl">32dp</dimen>
+
+    <dimen name="dialog_width">300dp</dimen>
+</resources>

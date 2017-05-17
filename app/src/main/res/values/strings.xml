@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Flatfoot Todo</string>
+    <string name="app_title">Flatfoot Todo Example</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="todo_label">Todo name</string>
+    <string name="create_todo">Create todo</string>
+</resources>

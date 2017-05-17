@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_lg"
+    android:minWidth="@dimen/dialog_width">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/todo_label"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <EditText
+        android:id="@+id/todo_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:maxLines="1" />
+
+    <Button
+        android:id="@+id/create_todo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_todo"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/space_xxl"
+        android:padding="@dimen/space_md"
+        style="@style/Widget.AppCompat.Button.Colored"/>
+
+</LinearLayout>

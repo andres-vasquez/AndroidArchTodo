@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/todo_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_sm">
+
+    <ImageView
+        android:id="@+id/check_image_view"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:src="@drawable/ic_check_black_24dp"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/check_padding"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/todo_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center_vertical"
+        android:layout_toStartOf="@id/check_image_view"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+</RelativeLayout>
