@@ -12,4 +12,6 @@
     <dimen name="space_xxl">32dp</dimen>
 
     <dimen name="dialog_width">300dp</dimen>
+
+    <dimen name="line_separator">2px</dimen>
 </resources>

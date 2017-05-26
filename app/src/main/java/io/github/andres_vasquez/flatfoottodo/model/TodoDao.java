@@ -28,4 +28,10 @@ public interface TodoDao {
 
     @Query("SELECT * FROM Todo")
     LiveData<List<Todo>> getAllTodos();
+
+    @Query("SELECT * FROM Todo WHERE finished=:isFinished")
+    LiveData<List<Todo>> getTodosByFinishState(boolean isFinished);
+
+    @Query("SELECT * FROM Todo")
+    List<Todo> getAllTodosStatic();
 }

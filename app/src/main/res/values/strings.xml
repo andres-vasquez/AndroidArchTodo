@@ -1,8 +1,20 @@
 <resources>
-    <string name="app_name">Flatfoot Todo</string>
-    <string name="app_title">Flatfoot Todo Example</string>
+    <string name="app_name">Todotomato</string>
+    <string name="app_title">Todotomato</string>
     <string name="title_activity_main2">Main2Activity</string>
 
     <string name="todo_label">Todo name</string>
     <string name="create_todo">Create todo</string>
+    <string name="update_todo">Save changes</string>
+
+    <string name="timer_title">Pomodoro Timer</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_share">Share</string>
+
+    <string name="state_all">All</string>
+    <string name="state_finished">Done</string>
+    <string name="state_pending">Pending</string>
+
+    <string name="share_using">Share using</string>
+    <string name="share_subject">Your TODO list</string>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="horizontal"
+    android:background="@color/colorAccent">
+
+    <ImageView
+        android:id="@+id/timer_action_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_play_arrow_white_24dp"
+        android:padding="@dimen/space_md"/>
+    
+    <View
+        android:layout_width="@dimen/line_separator"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:layout_marginTop="@dimen/space_xxs"
+        android:layout_marginBottom="@dimen/space_xxs"/>
+
+    <TextView
+        android:id="@+id/timer_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingEnd="@dimen/space_md"
+        android:paddingStart="@dimen/space_md"
+        android:text="@string/timer_title"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

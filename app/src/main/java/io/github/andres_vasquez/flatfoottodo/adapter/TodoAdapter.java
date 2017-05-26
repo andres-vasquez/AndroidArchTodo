@@ -1,20 +1,19 @@
 package io.github.andres_vasquez.flatfoottodo.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.github.andres_vasquez.flatfoottodo.R;
 import io.github.andres_vasquez.flatfoottodo.database.TodoHelper;
+import io.github.andres_vasquez.flatfoottodo.model.OnClickTodo;
 import io.github.andres_vasquez.flatfoottodo.model.Todo;
+import io.github.andres_vasquez.flatfoottodo.utils.Constants;
 
 /**
  * Created by andresvasquez on 5/17/17.
@@ -27,7 +26,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
 
     private Context mContext;
     private List<Todo> items;
+    private List<Todo> itemsFiltered;
     private LayoutInflater layoutInflater;
+    private OnClickTodo editCallback;
+    private int mFilter = Constants.FILTER_ALL;
 
     /**
      * Todos Adapter constructor
@@ -37,6 +39,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
         this.mContext = context;
         layoutInflater = LayoutInflater.from(mContext);
         this.items=new ArrayList<Todo>();
+        this.itemsFiltered=new ArrayList<Todo>();
     }
 
     @Override
@@ -47,18 +50,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
 
     @Override
     public void onBindViewHolder(TodoViewHolder holder, final int position) {
-        final Todo todo=items.get(position);
+        final Todo todo=itemsFiltered.get(position);
         holder.todoTextView.setText(todo.getName());
 
         //Hide or show check image
         if(todo.isFinished()){
-            holder.checkImageView.setVisibility(View.VISIBLE);
+            holder.finishedCheckBox.setChecked(true);
         } else {
-            holder.checkImageView.setVisibility(View.GONE);
+            holder.finishedCheckBox.setChecked(false);
         }
 
         //Add click listener and change the value in background
-        holder.todoRelativeLayout.setOnClickListener(new View.OnClickListener() {
+        holder.finishedCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 todo.setFinished(!todo.isFinished());
@@ -66,11 +69,21 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
                 todoHelper.updateTodoAsync(todo);
             }
         });
+
+        //Add click listener and editCallback to return edit action
+        holder.editImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editCallback !=null){
+                    editCallback.onClick(todo);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return itemsFiltered.size();
     }
 
     /**
@@ -80,7 +93,40 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
     public void swap(List<Todo> todoList) {
         this.items.clear();
         this.items.addAll(todoList);
-        notifyDataSetChanged();
+
+        filterList(mFilter);
+    }
+
+    /**
+     * Filter values
+     * @param filter
+     */
+    public void filterList(Integer filter) {
+        this.mFilter=filter;
+
+        if(filter == Constants.FILTER_ALL){
+            this.itemsFiltered.clear();
+            this.itemsFiltered.addAll(this.items);
+            notifyDataSetChanged();
+        } else {
+            this.itemsFiltered.clear();
+            for (Todo todo : items){
+                if(filter==Constants.FILTER_FINISHED && todo.isFinished()){
+                    this.itemsFiltered.add(todo);
+                } else if(filter==Constants.FILTER_PENDING && !todo.isFinished()){
+                    this.itemsFiltered.add(todo);
+                }
+            }
+            notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * Add click edit callback action
+     * @param editCallback onClickTodo listener
+     */
+    public void setEditCallback(OnClickTodo editCallback) {
+        this.editCallback = editCallback;
     }
 }
 

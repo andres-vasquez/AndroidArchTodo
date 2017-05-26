@@ -1,29 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/todo_relative_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/todo_parent_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/space_sm">
+    android:padding="@dimen/space_xs">
 
-    <ImageView
-        android:id="@+id/check_image_view"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
-        android:src="@drawable/ic_check_black_24dp"
-        android:adjustViewBounds="true"
-        android:padding="@dimen/check_padding"
-        android:visibility="gone"
-        android:layout_alignParentEnd="true"/>
-
-    <TextView
-        android:id="@+id/todo_text_view"
+    <android.support.v7.widget.CardView
+        android:id="@+id/todo_card_view"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center_vertical"
-        android:layout_toStartOf="@id/check_image_view"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        app:cardBackgroundColor="@android:color/white"
+        app:contentPadding="@dimen/space_xs">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/todo_relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <CheckBox
+                android:id="@+id/finished_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:id="@+id/edit_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_edit_blue_24dp"
+                android:paddingTop="@dimen/space_md"
+                android:paddingBottom="@dimen/space_md"
+                android:paddingStart="@dimen/space_xs"
+                android:paddingEnd="@dimen/space_xs"/>
+
+            <TextView
+                android:id="@+id/todo_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/finished_check_box"
+                android:layout_toStartOf="@id/edit_image_view"
+                android:paddingStart="@dimen/space_md"
+                android:paddingEnd="@dimen/space_xxs"
+                android:layout_centerInParent="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.List;
+
+import io.github.andres_vasquez.flatfoottodo.model.GetCallback;
 import io.github.andres_vasquez.flatfoottodo.model.Todo;
 
 /**
@@ -46,6 +49,14 @@ public class TodoHelper {
     }
 
     /**
+     * Get Static data for Export
+     * @param getCallback callback to handle the result
+     */
+    public void getTodoForExport(GetCallback getCallback){
+        new GetTodoForExport(getCallback).execute();
+    }
+
+    /**
      * Async task to avoid Main Thread when inserts a todos registry
      */
     private class InsertTodo extends AsyncTask<Todo,Void,Long>{
@@ -72,6 +83,27 @@ public class TodoHelper {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             Log.i(LOG,"Affected row: "+result);
+        }
+    }
+
+    /**
+     * Async tas to avoid Main Thread when select a todos
+     */
+    private class GetTodoForExport extends AsyncTask<Void,Void,List<Todo>>{
+        GetCallback getCallback;
+
+        public GetTodoForExport(GetCallback getCallback) {
+            this.getCallback = getCallback;
+        }
+
+        @Override
+        protected List<Todo> doInBackground(Void... params) {
+            return mDb.todoModel().getAllTodosStatic();
+        }
+        @Override
+        protected void onPostExecute(List<Todo> result) {
+            super.onPostExecute(result);
+            getCallback.onLoad(result);
         }
     }
 }
