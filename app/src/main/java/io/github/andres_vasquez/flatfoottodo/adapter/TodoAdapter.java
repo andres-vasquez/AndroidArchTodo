@@ -28,7 +28,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
     private List<Todo> items;
     private List<Todo> itemsFiltered;
     private LayoutInflater layoutInflater;
-    private OnClickTodo editCallback;
+    private OnClickTodo clickCallback;
     private int mFilter = Constants.FILTER_ALL;
 
     /**
@@ -70,12 +70,22 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
             }
         });
 
-        //Add click listener and editCallback to return edit action
+        //Add click listener and clickCallback to return edit action
         holder.editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editCallback !=null){
-                    editCallback.onClick(todo);
+                if(clickCallback !=null){
+                    clickCallback.onEditClick(todo);
+                }
+            }
+        });
+
+        //Add click listener and deleteCallback to return edit action
+        holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickCallback !=null){
+                    clickCallback.onDeleteClick(todo);
                 }
             }
         });
@@ -123,10 +133,10 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoViewHolder>{
 
     /**
      * Add click edit callback action
-     * @param editCallback onClickTodo listener
+     * @param clickCallback onClickTodo listener
      */
-    public void setEditCallback(OnClickTodo editCallback) {
-        this.editCallback = editCallback;
+    public void setClickCallback(OnClickTodo clickCallback) {
+        this.clickCallback = clickCallback;
     }
 }
 

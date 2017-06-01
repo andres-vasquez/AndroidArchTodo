@@ -5,5 +5,6 @@ package io.github.andres_vasquez.flatfoottodo.model;
  */
 
 public interface OnClickTodo {
-    void onClick(Todo todo);
+    void onEditClick(Todo todo);
+    void onDeleteClick(Todo todo);
 }

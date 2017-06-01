@@ -49,6 +49,14 @@ public class TodoHelper {
     }
 
     /**
+     * Delete todos registry in background
+     * @param todo
+     */
+    public void deleteTodoAsync(Todo todo){
+        new DeleteTodo().execute(todo);
+    }
+
+    /**
      * Get Static data for Export
      * @param getCallback callback to handle the result
      */
@@ -83,6 +91,17 @@ public class TodoHelper {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             Log.i(LOG,"Affected row: "+result);
+        }
+    }
+
+    /**
+     * Delete one Item
+     */
+    private class DeleteTodo extends AsyncTask<Todo,Void,Void>{
+        @Override
+        protected Void doInBackground(Todo... params) {
+            mDb.todoModel().deleteOne(params[0].getId());
+            return null;
         }
     }
 

@@ -17,4 +17,6 @@
 
     <string name="share_using">Share using</string>
     <string name="share_subject">Your TODO list</string>
+
+    <string name="delete_message">Todo task deleted successfully</string>
 </resources>

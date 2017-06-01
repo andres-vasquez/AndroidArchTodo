@@ -20,6 +20,7 @@ public class TodoViewHolder extends RecyclerView.ViewHolder{
     TextView todoTextView;
     CheckBox finishedCheckBox;
     ImageView editImageView;
+    ImageView deleteImageView;
 
     /**
      * Constructor of the template
@@ -32,5 +33,6 @@ public class TodoViewHolder extends RecyclerView.ViewHolder{
         todoTextView=(TextView)itemView.findViewById(R.id.todo_text_view);
         finishedCheckBox=(CheckBox) itemView.findViewById(R.id.finished_check_box);
         editImageView=(ImageView)itemView.findViewById(R.id.edit_image_view);
+        deleteImageView=(ImageView)itemView.findViewById(R.id.delete_image_view);
     }
 }

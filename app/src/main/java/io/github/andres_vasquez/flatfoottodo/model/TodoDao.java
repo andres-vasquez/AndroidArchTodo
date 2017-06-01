@@ -2,6 +2,7 @@ package io.github.andres_vasquez.flatfoottodo.model;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -22,6 +23,9 @@ public interface TodoDao {
 
     @Update(onConflict = REPLACE)
     int updateTodoTask(Todo todo);
+
+    @Query("DELETE FROM Todo WHERE id=:id")
+    void deleteOne(int id);
 
     @Query("DELETE FROM Todo")
     void deleteAll();

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class TodoFragment extends Fragment implements OnClickTodo{
         mCreateTodoButton.setText(getString(R.string.update_todo));
 
         mTodoAdapter = new TodoAdapter(mContext);
-        mTodoAdapter.setEditCallback(this);
+        mTodoAdapter.setClickCallback(this);
         mTodoRecyclerView.setAdapter(mTodoAdapter);
 
         //Init Recycler view
@@ -131,7 +132,7 @@ public class TodoFragment extends Fragment implements OnClickTodo{
     };
 
     @Override
-    public void onClick(final Todo todo) {
+    public void onEditClick(final Todo todo) {
         mTodoEditText.setText(todo.getName());
         mCreateTodoButton.setOnClickListener(null);
         mCreateTodoButton.setOnClickListener(new View.OnClickListener() {
@@ -144,5 +145,12 @@ public class TodoFragment extends Fragment implements OnClickTodo{
             }
         });
         mTodoDialog.show();
+    }
+
+    @Override
+    public void onDeleteClick(Todo todo) {
+        TodoHelper todoHelper=new TodoHelper(mContext);
+        todoHelper.deleteTodoAsync(todo);
+        Toast.makeText(mContext,getString(R.string.delete_message),Toast.LENGTH_SHORT).show();
     }
 }

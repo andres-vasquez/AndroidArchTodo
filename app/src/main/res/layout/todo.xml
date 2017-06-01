@@ -28,11 +28,23 @@
                 android:layout_centerVertical="true"/>
 
             <ImageView
-                android:id="@+id/edit_image_view"
+                android:id="@+id/delete_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_delete_forever_red_24dp"
+                android:paddingTop="@dimen/space_md"
+                android:paddingBottom="@dimen/space_md"
+                android:paddingStart="@dimen/space_xs"
+                android:paddingEnd="@dimen/space_xs"/>
+
+            <ImageView
+                android:id="@+id/edit_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_toStartOf="@+id/delete_image_view"
                 android:src="@drawable/ic_edit_blue_24dp"
                 android:paddingTop="@dimen/space_md"
                 android:paddingBottom="@dimen/space_md"
